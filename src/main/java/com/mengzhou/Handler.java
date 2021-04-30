@@ -54,8 +54,8 @@ public class Handler implements RequestHandler<Map<String,String>, String> {
 
             keyWords.forEach(keyWord -> {
                 if (isTargetTweet(tweet, keyWord)) {
-                    logger.log("Target tweet found, publish to " + keyWord + "\n");
                     String topicArn = String.format(SNS_TOPIC, awsRegion, awsAccountId, keyWord);
+                    logger.log("Target tweet found, publish to " + topicArn + "\n");
                     publish(sns, topicArn, tweet);
                 }
             });
